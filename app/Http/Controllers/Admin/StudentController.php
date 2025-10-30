@@ -22,7 +22,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.students.create');
     }
 
     /**
@@ -30,7 +30,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nis' => 'required|unique:students',
+            'nama_lengkap' => 'required',
+            'jenis_kelamin' => 'required',
+            'nisn' => 'required|unique:students',
+        ]);
+
+        Student::create($request->all());
+        return redirect()->route('admin.students.index')->with('succes', 'Data berhasil disimpan!');
     }
 
     /**
