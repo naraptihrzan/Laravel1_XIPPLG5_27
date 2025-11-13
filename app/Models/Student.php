@@ -15,4 +15,9 @@ class Student extends Model
         'jenis_kelamin',
         'nisn',
     ];
+
+     public function classrooms()
+    {
+        return $this->hasMany(Classroom::class);
+    }
 }
